@@ -1,0 +1,32 @@
+.map-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+/* .map-container {
+  width: 100vw;
+  height: 100vh;
+} */
+
+/* .map-controls {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 10;
+  display: flex;
+  gap: 10px;
+}
+
+.map-controls button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #0f172a;
+  color: white;
+  font-size: 14px;
+}
+
+.map-controls button:hover {
+  background-color: #1e293b; */
+/* } */
