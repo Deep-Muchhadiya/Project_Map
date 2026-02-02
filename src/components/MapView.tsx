@@ -28,7 +28,7 @@ const EMPTY_MAP_STYLE: StyleSpecification = {
       id: "background",
       type: "background",
       paint: {
-        "background-color": "#4e5a70"
+        "background-color": "#d1d3d7"
       }
     }
   ]
