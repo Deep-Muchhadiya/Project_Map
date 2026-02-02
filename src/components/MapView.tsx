@@ -28,7 +28,11 @@ const EMPTY_MAP_STYLE: StyleSpecification = {
       id: "background",
       type: "background",
       paint: {
+<<<<<<< Updated upstream
         "background-color": "#d6d9de"
+=======
+        "background-color": "#4e5a70"
+>>>>>>> Stashed changes
       }
     }
   ]
