@@ -2,9 +2,9 @@ name: Codacy Coverage Reporter
 
 on:
   push:
-    branches: [ "main", "master" ]
+    branches: [ "main", "development" ]
   pull_request:
-    branches: [ "main", "master" ]
+    branches: [ "main", "development" ]
 
 jobs:
   build-and-cover:
