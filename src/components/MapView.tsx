@@ -1,12 +1,12 @@
-import {useRef, useState} from "react";
+import { useRef, useState } from "react";
 import Map, {
   Source,
   Layer,
   type MapRef
 } from "react-map-gl/maplibre";
 import "maplibre-gl/dist/maplibre-gl.css";
-import type {StyleSpecification} from "maplibre-gl";
-import {stateUsers} from "../data/stateUsers";
+import type { StyleSpecification } from "maplibre-gl";
+import { stateUsers } from "../data/stateUsers";
 
 interface TooltipInfo {
   x: number;
@@ -21,49 +21,49 @@ const MAX_BOUNDS: [[number, number], [number, number]] = [
 ];
 
 const EMPTY_MAP_STYLE: StyleSpecification = {
-    version: 8,
-    sources: {},
-    layers: [
-      {
-        id: "background",
-        type: "background",
-        paint: {
-          "background-color": "#d1d3d7"
-        }
+  version: 8,
+  sources: {},
+  layers: [
+    {
+      id: "background",
+      type: "background",
+      paint: {
+        "background-color": "#d1d3d7"
       }
+    }
   ]
 } as const;
 
 /* ================= CITY LAYERS ================= */
 
 const cityFillLayer = {
-    id: "city-fill",
-    type: "fill",
+  id: "city-fill",
+  type: "fill",
   paint: {
-      "fill-color": [
-        "case",
-      ["boolean", ["feature-state", "hover"], false],
-        "#41d623",
-        "#989898"
-    ],
-      "fill-opacity": [
+    "fill-color": [
       "case",
       ["boolean", ["feature-state", "hover"], false],
-        0.4,
-        0.1
+      "#41d623",
+      "#989898"
+    ],
+    "fill-opacity": [
+      "case",
+      ["boolean", ["feature-state", "hover"], false],
+      0.4,
+      0.1
     ]
   }
 };
 
 const cityBorderLayer = {
-    id: "city-border",
-    type: "line",
+  id: "city-border",
+  type: "line",
   paint: {
-      "line-color": [
+    "line-color": [
       "case",
       ["boolean", ["feature-state", "hover"], false],
-        "#111827",
-        "#282525"
+      "#111827",
+      "#282525"
     ],
     "line-width": [
       "case",
