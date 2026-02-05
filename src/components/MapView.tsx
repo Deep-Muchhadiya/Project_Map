@@ -16,8 +16,8 @@ interface TooltipInfo {
 }
 
 const MAX_BOUNDS: [[number, number], [number, number]] = [
-  [40.0, -10.0], // Southwest (Deep Indian Ocean)
-  [125.0, 50.0]  // Northeast (China/Mongolia border)
+  [40.0, -10.0],
+  [125.0, 50.0]
 ];
 
 const EMPTY_MAP_STYLE: StyleSpecification = {
@@ -40,18 +40,17 @@ const cityFillLayer = {
   id: "city-fill",
   type: "fill",
   paint: {
-    // LOGIC: IF hover is true -> Blue, ELSE -> Orange
     "fill-color": [
       "case",
       ["boolean", ["feature-state", "hover"], false],
-      "#41d623", // <--- HOVER COLOR
-      "#989898"  // <--- DEFAULT COLOR
+      "#41d623",
+      "#989898"
     ],
     "fill-opacity": [
       "case",
       ["boolean", ["feature-state", "hover"], false],
-      0.4, // High opacity on hover
-      0.1  // Low opacity default
+      0.4,
+      0.1
     ]
   }
 };
@@ -79,12 +78,11 @@ const stateFillLayer = {
   id: "state-fill",
   type: "fill",
   paint: {
-    // LOGIC: IF hover is true -> Blue, ELSE -> Orange
     "fill-color": [
       "case",
       ["boolean", ["feature-state", "hover"], false],
-      "#f58230", // <--- HOVER COLOR (Blue)
-      "#989898"  // <--- DEFAULT COLOR (Orange)
+      "#f58230",
+      "#989898"
     ],
     "fill-opacity": [
       "case",
