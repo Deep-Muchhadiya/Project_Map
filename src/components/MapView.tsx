@@ -1,12 +1,12 @@
-import { useRef, useState } from "react";
+import {useRef, useState} from "react";
 import Map, {
   Source,
   Layer,
   type MapRef
 } from "react-map-gl/maplibre";
 import "maplibre-gl/dist/maplibre-gl.css";
-import type { StyleSpecification } from "maplibre-gl";
-import { stateUsers } from "../data/stateUsers";
+import type {StyleSpecification} from "maplibre-gl";
+import {stateUsers} from "../data/stateUsers";
 
 interface TooltipInfo {
   x: number;
