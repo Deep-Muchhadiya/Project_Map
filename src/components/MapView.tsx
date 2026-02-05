@@ -1,12 +1,12 @@
-import { useRef, useState } from "react";
+import {useRef, useState } from "react";
 import Map, {
   Source,
   Layer,
   type MapRef
 } from "react-map-gl/maplibre";
 import "maplibre-gl/dist/maplibre-gl.css";
-import type { StyleSpecification } from "maplibre-gl";
-import { stateUsers } from "../data/stateUsers";
+import type {StyleSpecification } from "maplibre-gl";
+import {stateUsers } from "../data/stateUsers";
 
 interface TooltipInfo {
   x: number;
@@ -16,55 +16,55 @@ interface TooltipInfo {
 }
 
 const MAX_BOUNDS: [[number, number], [number, number]] = [
-  [40.0, -10.0], // Southwest (Deep Indian Ocean)
-  [125.0, 50.0]  // Northeast (China/Mongolia border)
+  [40.0, -10.0],
+  [125.0, 50.0]
 ];
 
 const EMPTY_MAP_STYLE: StyleSpecification = {
-  version: 8,
-  sources: {},
-  layers: [
-    {
-      id: "background",
-      type: "background",
-      paint: {
-        "background-color": "#d1d3d7"
+    version: 8,
+    sources: {},
+    layers: [
+      {
+        id: "background",
+        type: "background",
+        paint: {
+          "background-color": "#d1d3d7"
+        }
       }
-    }
   ]
 } as const;
 
 /* ================= CITY LAYERS ================= */
 
 const cityFillLayer = {
-  id: "city-fill",
-  type: "fill",
+    id: "city-fill",
+    type: "fill",
   paint: {
     // LOGIC: IF hover is true -> Blue, ELSE -> Orange
-    "fill-color": [
-      "case",
+      "fill-color": [
+        "case",
       ["boolean", ["feature-state", "hover"], false],
-      "#41d623", // <--- HOVER COLOR
-      "#989898"  // <--- DEFAULT COLOR
+        "#41d623",
+        "#989898"
     ],
-    "fill-opacity": [
+      "fill-opacity": [
       "case",
       ["boolean", ["feature-state", "hover"], false],
-      0.4, // High opacity on hover
-      0.1  // Low opacity default
+        0.4,
+        0.1
     ]
   }
 };
 
 const cityBorderLayer = {
-  id: "city-border",
-  type: "line",
+    id: "city-border",
+    type: "line",
   paint: {
-    "line-color": [
+      "line-color": [
       "case",
       ["boolean", ["feature-state", "hover"], false],
-      "#111827",
-      "#282525"
+        "#111827",
+        "#282525"
     ],
     "line-width": [
       "case",
