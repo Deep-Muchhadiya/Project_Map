@@ -1,12 +1,12 @@
-import {useRef, useState } from "react";
+import {useRef, useState} from "react";
 import Map, {
   Source,
   Layer,
   type MapRef
 } from "react-map-gl/maplibre";
 import "maplibre-gl/dist/maplibre-gl.css";
-import type {StyleSpecification } from "maplibre-gl";
-import {stateUsers } from "../data/stateUsers";
+import type {StyleSpecification} from "maplibre-gl";
+import {stateUsers} from "../data/stateUsers";
 
 interface TooltipInfo {
   x: number;
@@ -40,7 +40,6 @@ const cityFillLayer = {
     id: "city-fill",
     type: "fill",
   paint: {
-    // LOGIC: IF hover is true -> Blue, ELSE -> Orange
       "fill-color": [
         "case",
       ["boolean", ["feature-state", "hover"], false],
@@ -79,12 +78,11 @@ const stateFillLayer = {
   id: "state-fill",
   type: "fill",
   paint: {
-    // LOGIC: IF hover is true -> Blue, ELSE -> Orange
     "fill-color": [
       "case",
       ["boolean", ["feature-state", "hover"], false],
-      "#f58230", // <--- HOVER COLOR (Blue)
-      "#989898"  // <--- DEFAULT COLOR (Orange)
+      "#f58230",
+      "#989898"
     ],
     "fill-opacity": [
       "case",
