@@ -1,0 +1,47 @@
+name: Codacy Coverage Reporter
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build-and-cover:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Check out your code repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Set up the Node.js environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      # 3. Install your project dependencies
+      - name: Install Dependencies
+        run: npm install
+
+      # 4. Run Tests & Generate Coverage Report
+      # CRITICAL: This command must create the coverage file (like lcov.info)
+      # If your test script is different, change 'npm test -- --coverage'
+      - name: Run Tests
+        run: npm test -- --coverage
+
+      # 5. Upload to Codacy (Your specific Step 2)
+      - name: Upload coverage to Codacy
+        if: success()
+        run: |
+          # Define your specific project variables
+          export CODACY_ORGANIZATION_PROVIDER=gh
+          export CODACY_USERNAME=Deep-Muchhadiya
+          export CODACY_PROJECT_NAME=Project_Map
+         
+          # Use the secret token you added in GitHub Settings
+          export CODACY_API_TOKEN=${{ secrets.bIqUSDleAg3PZ7NDQNaR }}
+         
+          # Run the Codacy uploader script
+          bash <(curl -Ls https://coverage.codacy.com/get.sh)
