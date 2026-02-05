@@ -1,4 +1,4 @@
-import {useRef, useState} from "react";
+import { useRef, useState, useCallback } from "react";
 import Map, {
   Source,
   Layer,
@@ -7,6 +7,9 @@ import Map, {
 import "maplibre-gl/dist/maplibre-gl.css";
 import type {StyleSpecification} from "maplibre-gl";
 import {stateUsers} from "../data/stateUsers";
+
+const CITY_LAYERS = ["city-fill"];
+const STATE_LAYERS = ["state-fill"];
 
 interface TooltipInfo {
   x: number;
@@ -112,6 +115,11 @@ const stateBorderLayer = {
   }
 };
 
+const containerStyle: React.CSSProperties = {
+  width: "100vw",
+  height: "100vh",
+  overflow: "hidden"
+};
 
 export default function MapView() {
   const mapRef = useRef<MapRef | null>(null);
@@ -123,6 +131,11 @@ export default function MapView() {
   const [selectedStateName, setSelectedStateName] = useState<string | null>(null);
 
   const isCityMode = selectedStateName !== null;
+  const handleMapLoad = useCallback(() => {
+    if (mapRef.current) {
+      mapRef.current.fitBounds(MAX_BOUNDS, { padding: 40 });
+    }
+  }, []);
 
   const zoomToState = (feature: any) => {
     const map = mapRef.current;
@@ -146,7 +159,7 @@ export default function MapView() {
   };
 
   return (
-    <div style={{ width: "100vw", height: "100vh", overflow: "hidden" }}>
+    <div style={containerStyle}>
       <Map
         ref={mapRef}
         renderWorldCopies={false}
@@ -154,10 +167,8 @@ export default function MapView() {
         minZoom={3.5}
         // mapStyle="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"
         mapStyle={EMPTY_MAP_STYLE}
-        onLoad={() =>
-          mapRef.current?.fitBounds(MAX_BOUNDS, { padding: 40 })
-        }
-        interactiveLayerIds={isCityMode ? ["city-fill"] : ["state-fill"]}
+        onLoad={handleMapLoad}
+        interactiveLayerIds={isCityMode ? CITY_LAYERS : STATE_LAYERS}
 
         onMouseMove={(e) => {
           const map = mapRef.current;
