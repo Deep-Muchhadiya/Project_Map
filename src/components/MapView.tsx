@@ -28,7 +28,7 @@ const EMPTY_MAP_STYLE: StyleSpecification = {
       id: "background",
       type: "background",
       paint: {
-        "background-color": "#d6d9de"
+        "background-color": "#d1d3d7"
       }
     }
   ]
@@ -44,8 +44,8 @@ const cityFillLayer = {
     "fill-color": [
       "case",
       ["boolean", ["feature-state", "hover"], false],
-      "#f58230", // <--- HOVER COLOR (Blue)
-      "#989898"  // <--- DEFAULT COLOR (Orange)
+      "#41d623", // <--- HOVER COLOR
+      "#989898"  // <--- DEFAULT COLOR
     ],
     "fill-opacity": [
       "case",
